@@ -33,6 +33,7 @@ scriptedBufferLog := true
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Refer https://github.com/sbt/sbt-github-actions#jdk-settings
 ThisBuild / githubWorkflowJavaVersions += JavaSpec.temurin("17")
+ThisBuild / githubWorkflowEnv += "MY_GITHUB_TOKEN" -> "${{ secrets.MY_GITHUB_TOKEN }}"
 
 // Refer https://github.com/sbt/sbt-github-actions#integration-with-sbt-ci-release
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
@@ -45,9 +46,6 @@ ThisBuild / githubWorkflowPublish := Seq(
   WorkflowStep.Sbt(
     commands = List("publish"),
     name = Some("Publish project"),
-    env = Map(
-      "MY_GITHUB_TOKEN" -> "${{ secrets.MY_GITHUB_TOKEN }}"
-    ),
   ),
 )
 
