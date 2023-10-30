@@ -9,7 +9,7 @@ ThisBuild / version := "1.0-SNAPSHOT"
 // Use Daniel Spiewak's sbt-github-packages plugin to publish to Github Packages Registry
 githubOwner := "dj707chen"
 githubRepository := "sbtPluginToGithubPackages"
-githubTokenSource := TokenSource.Environment("GITHUB_TOKEN")
+githubTokenSource := TokenSource.Environment("MY_GITHUB_TOKEN")
 publishMavenStyle := true
 
 ////////////////////////////////////////////////////////////////////////////////////////////////
@@ -45,6 +45,9 @@ ThisBuild / githubWorkflowPublish := Seq(
   WorkflowStep.Sbt(
     commands = List("publish"),
     name = Some("Publish project"),
+    env = Map(
+      "MY_GITHUB_TOKEN" -> "${{ secrets.MY_GITHUB_TOKEN }}"
+    ),
   ),
 )
 

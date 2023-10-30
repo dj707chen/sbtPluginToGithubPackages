@@ -106,4 +106,6 @@ jobs:
           rm targets.tar
 
       - name: Publish project
+        env:
+          MY_GITHUB_TOKEN: ${{ secrets.MY_GITHUB_TOKEN }}
         run: sbt publish
