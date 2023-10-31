@@ -32,7 +32,7 @@ scriptedBufferLog := true
 ////////////////////////////////////////////////////////////////////////////////////////////////
 // Refer https://github.com/sbt/sbt-github-actions#jdk-settings
 ThisBuild / githubWorkflowJavaVersions += JavaSpec.temurin("17")
-ThisBuild / githubWorkflowEnv += "MY_GITHUB_TOKEN" -> "${{ secrets.MY_GITHUB_TOKEN }}"
+ThisBuild / githubWorkflowEnv += "GITHUB_TOKEN" -> "${{ secrets.MY_GITHUB_TOKEN }}"
 
 // Refer https://github.com/sbt/sbt-github-actions#integration-with-sbt-ci-release
 ThisBuild / githubWorkflowTargetTags ++= Seq("v*")
